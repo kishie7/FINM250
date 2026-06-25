@@ -1,0 +1,5 @@
+streamlit
+alpaca-py
+python-dotenv
+altair
+pandas
