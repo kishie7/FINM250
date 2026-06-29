@@ -1,18 +1,11 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[31]:
-
-
+# Imports
 import pandas as pd
 from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
 
 
-# In[33]:
-
-
+# Allow for API and secret keys file read
 from dotenv import load_dotenv
 import os
 
@@ -28,9 +21,7 @@ from datetime import datetime, timedelta
 client = StockHistoricalDataClient(API_KEY, SECRET_KEY)
 
 
-# In[35]:
-
-
+# Tickers and allow user to type in ticker
 allowed_tickers = ["AAPL", "MSFT", "SPY", "QQQ", "NVDA"]
 
 while True:
@@ -44,9 +35,6 @@ while True:
         print("Invalid ticker. Please try again.")
 
 
-# In[41]:
-
-
 # Get historical data for requested ticker
 request = StockBarsRequest(
     symbol_or_symbols=ticker,
@@ -54,11 +42,8 @@ request = StockBarsRequest(
     start=datetime(2021, 6, 1),
     end=datetime(2026, 6, 1),
 )
-
 bars = client.get_stock_bars(request).df
 
-
-# In[51]:
 
 
 # Building techincal indicators so that they can be recalled in the various strategies 
@@ -114,7 +99,6 @@ mf_volume = mf_multiplier * df['volume']
 df['CMF'] = mf_volume.rolling(window=20).sum() / df['volume'].rolling(window=20).sum()
 
 
-# In[53]:
 
 
 #Strategy 1: Trend Following
@@ -156,7 +140,7 @@ print(f"Buy & Hold Return: {buy_hold_return:.2%}")
 print(f"Number of trades: {num_trades}")
 
 
-# In[55]:
+
 
 
 #Strategy 2: Mean Reversion
@@ -203,7 +187,7 @@ print(f"Buy & Hold Return: {buy_hold_return:.2%}")
 print(f"Number of trades: {num_trades_2}")
 
 
-# In[61]:
+
 
 
 #Strategy 3: Jesse Livermore Pivotal Points using SMA, Williams, and CMF
@@ -248,10 +232,6 @@ num_trades_3 = (df['position_3'].diff() != 0).sum()
 print(f"Strategy 3 Total Return: {total_return_3:.2%}")
 print(f"Buy & Hold Return: {buy_hold_return:.2%}")
 print(f"Number of trades: {num_trades_3}")
-
-
-# In[ ]:
-
 
 
 
