@@ -6,6 +6,8 @@ File 1: HW2_FINM250_new.py is the source code that generates the comparison grap
 
 File 2: Report_final.pdf is the report pdf analysing our results.
 
+Folder: charts contains all the charts for the tickers we used.
+
 
 In order to keep our secret keys private we have the scripts read from a '.env' file. So you should use the text editor and add your keys to a .env that looks like this:
 
