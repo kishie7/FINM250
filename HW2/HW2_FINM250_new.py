@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
+from alpaca.data.enums import Adjustment
 
 from dotenv import load_dotenv
 import os
@@ -36,6 +37,7 @@ request = StockBarsRequest(
     timeframe=TimeFrame.Day,
     start=datetime(2021, 6, 1),
     end=datetime(2026, 6, 1),
+    adjustment=Adjustment.ALL,
 )
 bars = client.get_stock_bars(request).df
 df = bars.reset_index()
