@@ -89,7 +89,7 @@ latest_pca = prod_pca.transform(latest_scaled)
 
 
 latest_probability = prod_model.predict_proba(latest_pca)[:, 1][0]
-latest_signal = "Long" if latest_probability > 0.60 else "Flat"
+latest_signal = "Long" if latest_probability > 0.55 else "Flat"
 latest_date = latest_row["timestamp"].iloc[0]
 latest_close = latest_row["close"].iloc[0]
 
