@@ -37,6 +37,9 @@ class AlpacaPaperBroker:
     def get_account(self) -> Any:
         return self.client.get_account()
 
+    def get_recent_orders(self, limit=10):
+    return self.client.get_orders()[:limit]
+
     def get_positions(self) -> dict[str, PositionState]:
         positions: dict[str, PositionState] = {}
         for item in self.client.get_all_positions():
