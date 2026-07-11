@@ -36,13 +36,23 @@ st.set_page_config(page_title="Trading Dashboard", layout="wide")
 
 st.title("Algorithmic Trading Dashboard")
 
-from alpaca_broker import AlpacaPaperBroker
+# Allow for API and secret keys file read
+from dotenv import load_dotenv
 import os
 
+from alpaca_broker import AlpacaPaperBroker
+
+
+load_dotenv()
+API_KEY = os.getenv("ALPACA_API_KEY")
+SECRET_KEY = os.getenv("ALPACA_SECRET_KEY")
+
 broker = AlpacaPaperBroker(
-    api_key=os.getenv("ALPACA_API_KEY"),
-    secret_key=os.getenv("ALPACA_SECRET_KEY")
+    api_key=os.getenv("API_KEY"),
+    secret_key=os.getenv("SECRET_KEY")
 )
+
+print(API_KEY is not None)
 
 account = broker.get_account()
 positions = broker.get_positions()
