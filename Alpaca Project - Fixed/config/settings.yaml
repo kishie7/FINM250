@@ -1,0 +1,30 @@
+mode: backtest
+symbols: [SPY, QQQ, IWM, AAPL, MSFT]
+strategy:
+  fast_window: 20
+  slow_window: 50
+  volatility_window: 20
+  annualized_target_volatility: 0.15
+  minimum_history: 60
+risk:
+  initial_capital: 100000
+  max_position_pct: 0.20
+  max_gross_exposure_pct: 0.90
+  max_order_notional_pct: 0.10
+  stop_loss_pct: 0.05
+  take_profit_pct: 0.10
+  max_daily_drawdown_pct: 0.03
+execution:
+  order_type: market
+  time_in_force: day
+  rebalance_threshold_pct: 0.01
+  allow_fractional_shares: true
+  cycle_seconds: 300
+backtest:
+  start: '2023-01-01'
+  end: '2025-12-31'
+  slippage_bps: 2
+  commission_per_trade: 0.0
+logging:
+  level: INFO
+  file: logs/trading_system.log

@@ -1,0 +1,10 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+logs/
+data/equity_curve.csv
+data/trades.csv
+data/market_data.db
+.venv_check/
+.pytest_cache/
